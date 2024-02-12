@@ -7,6 +7,7 @@ Gameplay:
 * Each level presents more and more mushrooms to color and a catchy melody to follow.
 * First, the buckets drop in a random rhytm, and some musical notes play as they hit the ground. Then comes the players' turn, as they need to repeat what they heard, tapping on the screen following the same rhythm.
 * But beware! Divergica loves to add twists and turns, so players must stay on their toes and adapt to her playful deviations. They need to look for buckets with extra paint, and tap twice whenever they see them.
+* Divergica also hates the black color, so she skips those buckets.
 * If you fail a part of a level, you can retry that part, but only 3 times for the whole level.
 * Successfully coloring the mushrooms on the rhythm earns points, gold, fairy fronds and unlocks new levels.
 * Gold can be spent on power-ups, such as extra buckets for more retries, magic potions for each color to boost gold income, and enchanted wings to play the rhythm slower.

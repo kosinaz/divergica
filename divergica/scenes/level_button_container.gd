@@ -12,4 +12,5 @@ func _ready():
 		add_child(button)
 
 func _start_level(id):
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/level" + str(id) + ".tscn")

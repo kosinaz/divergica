@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/level1.gd" type="Script" id=1]
 [ext_resource path="res://assets/level_bg.png" type="Texture" id=2]
+[ext_resource path="res://assets/mushroom.png" type="Texture" id=3]
+[ext_resource path="res://assets/paint_button.png" type="Texture" id=4]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -10,3 +12,35 @@ script = ExtResource( 1 )
 position = Vector2( 512, 288 )
 scale = Vector2( 0.533333, 0.533333 )
 texture = ExtResource( 2 )
+
+[node name="Mushrooms" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Mushroom1" type="Sprite" parent="Mushrooms"]
+position = Vector2( 96, 480 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )
+
+[node name="Mushroom2" type="Sprite" parent="Mushrooms"]
+position = Vector2( 288, 480 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )
+
+[node name="Mushroom3" type="Sprite" parent="Mushrooms"]
+position = Vector2( 480, 480 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )
+
+[node name="Mushroom4" type="Sprite" parent="Mushrooms"]
+position = Vector2( 672, 480 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )
+
+[node name="PaintButton" type="TextureButton" parent="."]
+margin_left = 864.0
+margin_top = 416.0
+margin_right = 992.0
+margin_bottom = 544.0
+texture_normal = ExtResource( 4 )
+
+[connection signal="pressed" from="PaintButton" to="." method="_on_paint_button_pressed"]

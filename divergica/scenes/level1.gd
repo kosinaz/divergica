@@ -14,32 +14,36 @@ func _ready():
 func _start_round():
 	$"PaintButton".show()
 	$"BrushAnimationPlayer".play("0to1")
+	current_mushroom = 0
 
 func _on_paint_button_pressed():
 	if current_mushroom > 3:
 		return
-	var path = $"Mushrooms".get_child(current_mushroom).texture.load_path
-	if "black".is_subsequence_of(path):
+	var mushroom_name = $"Mushrooms".get_child(current_mushroom).name
+	if mushroom_name.begins_with("Black"):
 		$"Brush".get_node("Error").play()
 		current_mushroom += 1
 		return
-	if "striped".is_subsequence_of(path):
-		if "painted".is_subsequence_of(path):
-			$"Mushrooms".get_child(current_mushroom).texture = load("res://assets/mushroom_striped_painted_twice.png")
-			$"Brush".get_child(notes[current_mushroom]).play()
-			current_mushroom += 1
+	$"Brush".get_child(notes[current_mushroom]).play()
+	if mushroom_name.begins_with("Striped"):
+		print($"Mushrooms".get_child(current_mushroom).get_node("AnimatedSprite").animation)
+		if $"Mushrooms".get_child(current_mushroom).get_node("AnimatedSprite").animation == "once":
+			print("yes")
+			$"Mushrooms".get_child(current_mushroom).get_node("AnimatedSprite").play("twice")
+			current_mushroom += 2
 		else:
-			$"Mushrooms".get_child(current_mushroom).texture = load("res://assets/mushroom_striped_painted_once.png")
-			$"Brush".get_child(notes[current_mushroom]).play()
-	else:
-		$"Mushrooms".get_child(current_mushroom).texture = load("res://assets/mushroom_painted.png")
-		$"Brush".get_child(notes[current_mushroom]).play()
+			$"Mushrooms".get_child(current_mushroom).get_node("AnimatedSprite").play("once")
+	if mushroom_name.begins_with("White"):
+		$"Mushrooms".get_child(current_mushroom).get_node("AnimatedSprite").play("painted")
 		current_mushroom += 1
+	print(current_mushroom)
 
 func _on_timer_timeout():
-	if not $"Mushrooms".get_child(current_mushroom).get_node("Sprite").texture == null:
+	if current_mushroom > 3:
+		$"Timer".stop()
+		_start_round()
+		return
+	if not $"Mushrooms".get_child(current_mushroom).name.begins_with("None"):
 		$"MushroomSounds".get_child(notes[current_mushroom]).play()
 		$"Mushrooms".get_child(current_mushroom).get_node("AnimationPlayer").play("default")
 	current_mushroom += 1
-	if current_mushroom > 3:
-		$"Timer".stop()

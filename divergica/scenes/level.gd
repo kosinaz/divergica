@@ -60,4 +60,4 @@ func _on_follow_timer_timeout():
 		$"LevelEngine/PaintButton".disabled = false
 	else:
 		$"LevelEngine/FollowTimer".stop()
-		$"LevelEngine/PaintButton".disabled = true
+		$"LevelEngine/PaintButton".hide()

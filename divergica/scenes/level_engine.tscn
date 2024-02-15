@@ -177,6 +177,7 @@ margin_top = 416.0
 margin_right = 992.0
 margin_bottom = 544.0
 disabled = true
+action_mode = 0
 shortcut = SubResource( 12 )
 texture_normal = ExtResource( 4 )
 texture_disabled = ExtResource( 1 )

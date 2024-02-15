@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/level1.gd" type="Script" id=1]
 [ext_resource path="res://assets/level_bg.png" type="Texture" id=2]
@@ -13,6 +13,33 @@
 [ext_resource path="res://assets/e2.mp3" type="AudioStream" id=11]
 [ext_resource path="res://assets/d2.mp3" type="AudioStream" id=12]
 [ext_resource path="res://assets/f2.mp3" type="AudioStream" id=13]
+
+[sub_resource type="Animation" id=1]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8, 1 ),
+"transitions": PoolRealArray( 2.54912, 0.297302, 3.13833, 4.75682 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0.3, 0.4 ), Vector2( 0.45, 0.3 ), Vector2( 0.4, 0.4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Mushroom2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -36,31 +63,37 @@ stream = ExtResource( 11 )
 [node name="F2" type="AudioStreamPlayer2D" parent="MushroomSounds"]
 stream = ExtResource( 13 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Mushrooms/Mushroom1")
+anims/default = SubResource( 1 )
+
 [node name="Mushrooms" type="Node" parent="."]
-unique_name_in_owner = true
 
 [node name="Mushroom1" type="Sprite" parent="Mushrooms"]
-position = Vector2( 96, 480 )
+position = Vector2( 96, 560 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
+offset = Vector2( 0, -192 )
 
 [node name="Mushroom2" type="Sprite" parent="Mushrooms"]
-position = Vector2( 288, 480 )
+position = Vector2( 288, 560 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
+offset = Vector2( 0, -192 )
 
 [node name="Mushroom3" type="Sprite" parent="Mushrooms"]
-position = Vector2( 480, 480 )
+position = Vector2( 480, 560 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
+offset = Vector2( 0, -192 )
 
 [node name="Mushroom4" type="Sprite" parent="Mushrooms"]
-position = Vector2( 672, 480 )
+position = Vector2( 672, 560 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
+offset = Vector2( 0, -192 )
 
 [node name="Brush" type="Sprite" parent="."]
-unique_name_in_owner = true
 position = Vector2( 160, 304 )
 scale = Vector2( 0.191045, 0.216216 )
 texture = ExtResource( 5 )
@@ -92,8 +125,4 @@ margin_right = 992.0
 margin_bottom = 544.0
 texture_normal = ExtResource( 4 )
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
 [connection signal="pressed" from="PaintButton" to="." method="_on_paint_button_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_show_next_mushroom"]

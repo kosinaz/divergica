@@ -1,19 +1,22 @@
 extends Node2D
 
 var current_mushroom = 0
-var turn = 0
 var notes = []
 var rng = RandomNumberGenerator.new()
 
 func _ready():
 	rng.randomize()
-	$"AnimationPlayer".play("default")
+	$"MushroomAnimationPlayer".play("default")
 	for _i in range(4):
 		notes.append(rng.randi_range(0, 3))
 
 func _play_note():
 	$"MushroomSounds".get_child(notes[current_mushroom]).play()
 	current_mushroom = (current_mushroom + 1) % 4
+
+func _start_round():
+	$"PaintButton".show()
+	$"BrushAnimationPlayer".play("0to1")
 
 func _on_paint_button_pressed():
 	if current_mushroom > 3:

@@ -6,13 +6,10 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
 	rng.randomize()
-	$"MushroomAnimationPlayer".play("default")
 	for _i in range(4):
 		notes.append(rng.randi_range(0, 3))
-
-func _play_note():
-	$"MushroomSounds".get_child(notes[current_mushroom]).play()
-	current_mushroom = (current_mushroom + 1) % 4
+	for mushroom in $"Mushrooms".get_children():
+		mushroom.hide()
 
 func _start_round():
 	$"PaintButton".show()
@@ -38,3 +35,11 @@ func _on_paint_button_pressed():
 		$"Mushrooms".get_child(current_mushroom).texture = load("res://assets/mushroom_painted.png")
 		$"Brush".get_child(notes[current_mushroom]).play()
 		current_mushroom += 1
+
+func _on_timer_timeout():
+	if not $"Mushrooms".get_child(current_mushroom).get_node("Sprite").texture == null:
+		$"MushroomSounds".get_child(notes[current_mushroom]).play()
+		$"Mushrooms".get_child(current_mushroom).get_node("AnimationPlayer").play("default")
+	current_mushroom += 1
+	if current_mushroom > 3:
+		$"Timer".stop()

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/level1.gd" type="Script" id=1]
 [ext_resource path="res://assets/level_bg.png" type="Texture" id=2]
-[ext_resource path="res://assets/mushroom.png" type="Texture" id=3]
+[ext_resource path="res://scenes/mushroom.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/paint_button.png" type="Texture" id=4]
 [ext_resource path="res://assets/brush.png" type="Texture" id=5]
 [ext_resource path="res://assets/c1.mp3" type="AudioStream" id=6]
@@ -13,87 +13,10 @@
 [ext_resource path="res://assets/e2.mp3" type="AudioStream" id=11]
 [ext_resource path="res://assets/d2.mp3" type="AudioStream" id=12]
 [ext_resource path="res://assets/f2.mp3" type="AudioStream" id=13]
-[ext_resource path="res://assets/mushroom_black.png" type="Texture" id=14]
-[ext_resource path="res://assets/mushroom_striped.png" type="Texture" id=15]
+[ext_resource path="res://scenes/mushroom_black.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/mushroom_striped.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/error.mp3" type="AudioStream" id=16]
-
-[sub_resource type="Animation" id=1]
-resource_name = "default"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 0.8, 1 ),
-"transitions": PoolRealArray( 2.5, 0.3, 3, 4.75682 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0.3, 0.45 ), Vector2( 0.45, 0.3 ), Vector2( 0.4, 0.4 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../Mushroom2:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1, 1.5, 1.8, 2 ),
-"transitions": PoolRealArray( 1, 2.5, 0.3, 3, 4.75 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0.3, 0.45 ), Vector2( 0.45, 0.3 ), Vector2( 0.4, 0.4 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../Mushroom3:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 2, 2.5, 2.8, 3 ),
-"transitions": PoolRealArray( 1, 2.5, 0.3, 3, 4.75 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0.3, 0.45 ), Vector2( 0.45, 0.3 ), Vector2( 0.4, 0.4 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../Mushroom4:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 3, 3.5, 3.8, 4 ),
-"transitions": PoolRealArray( 1, 2.5, 0.3, 3, 4.75 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0.3, 0.45 ), Vector2( 0.45, 0.3 ), Vector2( 0.4, 0.4 ) ]
-}
-tracks/4/type = "method"
-tracks/4/path = NodePath("../..")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 1, 2, 3, 4, 5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "_play_note"
-}, {
-"args": [  ],
-"method": "_play_note"
-}, {
-"args": [  ],
-"method": "_play_note"
-}, {
-"args": [  ],
-"method": "_play_note"
-}, {
-"args": [  ],
-"method": "_start_round"
-} ]
-}
+[ext_resource path="res://scenes/mushroom_none.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Animation" id=7]
 resource_name = "0to1"
@@ -317,35 +240,18 @@ position = Vector2( 46.8116, -784.839 )
 scale = Vector2( 1.76853, 2.00154 )
 stream = ExtResource( 9 )
 
-[node name="MushroomAnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Mushrooms/Mushroom1")
-anims/default = SubResource( 1 )
-
 [node name="Mushrooms" type="Node" parent="."]
 
-[node name="Mushroom1" type="Sprite" parent="Mushrooms"]
-position = Vector2( 96, 560 )
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 3 )
-offset = Vector2( 0, -192 )
+[node name="Mushroom1" parent="Mushrooms" instance=ExtResource( 15 )]
+position = Vector2( 96, 544 )
 
-[node name="Mushroom2" type="Sprite" parent="Mushrooms"]
-position = Vector2( 288, 560 )
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 15 )
-offset = Vector2( 0, -192 )
+[node name="Mushroom2" parent="Mushrooms" instance=ExtResource( 17 )]
 
-[node name="Mushroom3" type="Sprite" parent="Mushrooms"]
-position = Vector2( 480, 560 )
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 3 )
-offset = Vector2( 0, -192 )
+[node name="Mushroom3" parent="Mushrooms" instance=ExtResource( 14 )]
+position = Vector2( 480, 544 )
 
-[node name="Mushroom4" type="Sprite" parent="Mushrooms"]
-position = Vector2( 672, 560 )
-scale = Vector2( 1e-05, 1e-05 )
-texture = ExtResource( 14 )
-offset = Vector2( 0, -192 )
+[node name="Mushroom4" parent="Mushrooms" instance=ExtResource( 3 )]
+position = Vector2( 672, 544 )
 
 [node name="BrushAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/0to1 = SubResource( 7 )
@@ -358,7 +264,7 @@ anims/RESET = SubResource( 3 )
 anims/repeat = SubResource( 6 )
 
 [node name="Brush" type="Sprite" parent="."]
-position = Vector2( 1152, 320 )
+position = Vector2( 384, 320 )
 scale = Vector2( 0.191045, 0.216216 )
 texture = ExtResource( 5 )
 
@@ -395,4 +301,8 @@ margin_right = 992.0
 margin_bottom = 544.0
 texture_normal = ExtResource( 4 )
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="pressed" from="PaintButton" to="." method="_on_paint_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

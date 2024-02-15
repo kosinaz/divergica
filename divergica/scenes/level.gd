@@ -21,27 +21,26 @@ func _ready():
 	$"LevelEngine/PaintButton".connect("pressed", self, "_on_paint_button_pressed")
 
 func _start_round():
-	$"LevelEngine/PaintButton".show()
 	$"LevelEngine/FollowTimer".start()
-	$"LevelEngine/BrushAnimationPlayer".play("0to1")
+	$"LevelEngine/BrushAnimationPlayer".play("brush_animation")
 	current_mushroom = -1
 
 func _on_paint_button_pressed():
-	if $"LevelEngine/FollowTimer".time_left < 0.5 or current_mushroom == -1:
-		$"LevelEngine/Brush".get_node("Error").play()
+	if $"LevelEngine/FollowTimer".time_left < 0.4 or current_mushroom == -1:
+		$"LevelEngine/BrushSounds".get_node("Error").play()
 		return
 	var mushroom = mushrooms[current_mushroom]
 	match mushroom.animation:
 		"black":
-			$"LevelEngine/Brush".get_node("Error").play()
+			$"LevelEngine/BrushSounds".get_node("Error").play()
 		"striped":
-			$"LevelEngine/Brush".get_child(notes[current_mushroom]).play()
+			$"LevelEngine/BrushSounds".get_child(notes[current_mushroom]).play()
 			mushroom.play("once")
 		"once":
-			$"LevelEngine/Brush".get_child(notes[current_mushroom]).play()
+			$"LevelEngine/BrushSounds".get_child(notes[current_mushroom]).play()
 			mushroom.play("twice")
 		"white":
-			$"LevelEngine/Brush".get_child(notes[current_mushroom]).play()
+			$"LevelEngine/BrushSounds".get_child(notes[current_mushroom]).play()
 			mushroom.play("painted")
 
 func _on_lead_timer_timeout():
@@ -57,12 +56,8 @@ func _on_lead_timer_timeout():
 
 func _on_follow_timer_timeout():
 	current_mushroom += 1
-	if current_mushroom == 0:
-		$"LevelEngine/BrushAnimationPlayer".play("1to2")
-	if current_mushroom == 1:
-		$"LevelEngine/BrushAnimationPlayer".play("2to3")
-	if current_mushroom == 2:
-		$"LevelEngine/BrushAnimationPlayer".play("3to4")
-	if current_mushroom > 3:
+	if current_mushroom < 3:
+		$"LevelEngine/PaintButton".disabled = false
+	else:
 		$"LevelEngine/FollowTimer".stop()
-		$"LevelEngine/PaintButton".hide()
+		$"LevelEngine/PaintButton".disabled = true

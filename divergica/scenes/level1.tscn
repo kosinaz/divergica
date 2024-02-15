@@ -1,309 +1,60 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/level1.gd" type="Script" id=1]
 [ext_resource path="res://assets/level_bg.png" type="Texture" id=2]
 [ext_resource path="res://scenes/mushroom.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/paint_button.png" type="Texture" id=4]
-[ext_resource path="res://assets/brush.png" type="Texture" id=5]
-[ext_resource path="res://assets/c1.mp3" type="AudioStream" id=6]
-[ext_resource path="res://assets/d1.mp3" type="AudioStream" id=7]
-[ext_resource path="res://assets/e1.mp3" type="AudioStream" id=8]
-[ext_resource path="res://assets/f1.mp3" type="AudioStream" id=9]
-[ext_resource path="res://assets/c2.mp3" type="AudioStream" id=10]
-[ext_resource path="res://assets/e2.mp3" type="AudioStream" id=11]
-[ext_resource path="res://assets/d2.mp3" type="AudioStream" id=12]
-[ext_resource path="res://assets/f2.mp3" type="AudioStream" id=13]
-[ext_resource path="res://assets/error.mp3" type="AudioStream" id=16]
-
-[sub_resource type="Animation" id=7]
-resource_name = "0to1"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Brush:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 2, 0.5, 1 ),
-"update": 0,
-"values": [ 1152.0, 576.0, 192.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Brush:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 0.5, 2, 1 ),
-"update": 0,
-"values": [ 320.0, 288.0, 320.0 ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "1to2"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Brush:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.4, 0.7, 1 ),
-"transitions": PoolRealArray( 2, 0.5, 1 ),
-"update": 0,
-"values": [ 192.0, 288.0, 384.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Brush:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.4, 0.7, 1 ),
-"transitions": PoolRealArray( 0.5, 2, 1 ),
-"update": 0,
-"values": [ 320.0, 288.0, 320.0 ]
-}
-
-[sub_resource type="Animation" id=8]
-resource_name = "1to3"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Brush:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6 ),
-"transitions": PoolRealArray( 2, 0.5, 1 ),
-"update": 0,
-"values": [ 192.0, 384.0, 576.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Brush:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6 ),
-"transitions": PoolRealArray( 0.5, 2, 1 ),
-"update": 0,
-"values": [ 320.0, 288.0, 320.0 ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "2to3"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Brush:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.4, 0.7, 1 ),
-"transitions": PoolRealArray( 2, 0.5, 1 ),
-"update": 0,
-"values": [ 384.0, 480.0, 576.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Brush:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.4, 0.7, 1 ),
-"transitions": PoolRealArray( 0.5, 2, 1 ),
-"update": 0,
-"values": [ 320.0, 288.0, 320.0 ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "2to4"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Brush:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8 ),
-"transitions": PoolRealArray( 2, 0.5, 1 ),
-"update": 0,
-"values": [ 384.0, 576.0, 768.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Brush:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8 ),
-"transitions": PoolRealArray( 0.5, 2, 1 ),
-"update": 0,
-"values": [ 320.0, 288.0, 320.0 ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "3to4"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Brush:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.4, 0.7, 1 ),
-"transitions": PoolRealArray( 2, 0.5, 1 ),
-"update": 0,
-"values": [ 576.0, 672.0, 768.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Brush:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.4, 0.7, 1 ),
-"transitions": PoolRealArray( 0.5, 2, 1 ),
-"update": 0,
-"values": [ 320.0, 288.0, 320.0 ]
-}
-
-[sub_resource type="Animation" id=3]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Brush:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1200, 320 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "repeat"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Brush:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8 ),
-"transitions": PoolRealArray( 0.5, 2, 1 ),
-"update": 0,
-"values": [ 320.0, 288.0, 320.0 ]
-}
+[ext_resource path="res://scenes/level.gd" type="Script" id=4]
+[ext_resource path="res://scenes/mushroom_none.tscn" type="PackedScene" id=17]
 
 [node name="Level" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 
 [node name="Bg" type="Sprite" parent="."]
 position = Vector2( 512, 288 )
 scale = Vector2( 0.533333, 0.533333 )
 texture = ExtResource( 2 )
 
-[node name="MushroomSounds" type="Node" parent="."]
+[node name="Bg2" type="Sprite" parent="."]
+position = Vector2( 1536, 288 )
+scale = Vector2( 0.533333, 0.533333 )
+texture = ExtResource( 2 )
 
-[node name="C1" type="AudioStreamPlayer2D" parent="MushroomSounds"]
-position = Vector2( 46.8142, -784.841 )
-scale = Vector2( 1.76853, 2.00154 )
-stream = ExtResource( 6 )
+[node name="Bg3" type="Sprite" parent="."]
+position = Vector2( 2560, 288 )
+scale = Vector2( 0.533333, 0.533333 )
+texture = ExtResource( 2 )
 
-[node name="D1" type="AudioStreamPlayer2D" parent="MushroomSounds"]
-position = Vector2( 46.8129, -784.839 )
-scale = Vector2( 1.76853, 2.00154 )
-stream = ExtResource( 7 )
+[node name="White" parent="." instance=ExtResource( 3 )]
+position = Vector2( 256, 576 )
 
-[node name="E1" type="AudioStreamPlayer2D" parent="MushroomSounds"]
-position = Vector2( 46.8122, -784.839 )
-scale = Vector2( 1.76853, 2.00154 )
-stream = ExtResource( 8 )
+[node name="White2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 384, 576 )
 
-[node name="F1" type="AudioStreamPlayer2D" parent="MushroomSounds"]
-position = Vector2( 46.8116, -784.839 )
-scale = Vector2( 1.76853, 2.00154 )
-stream = ExtResource( 9 )
+[node name="White3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 512, 576 )
 
-[node name="Mushrooms" type="Node" parent="."]
+[node name="None" parent="." instance=ExtResource( 17 )]
+position = Vector2( 640, 576 )
 
-[node name="White" parent="Mushrooms" instance=ExtResource( 3 )]
-position = Vector2( 96, 560 )
+[node name="White4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1280, 576 )
 
-[node name="White2" parent="Mushrooms" instance=ExtResource( 3 )]
-position = Vector2( 288, 560 )
+[node name="White5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1408, 576 )
 
-[node name="White3" parent="Mushrooms" instance=ExtResource( 3 )]
-position = Vector2( 480, 560 )
+[node name="White6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1536, 576 )
 
-[node name="White4" parent="Mushrooms" instance=ExtResource( 3 )]
-position = Vector2( 672, 560 )
+[node name="White7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1664, 576 )
 
-[node name="BrushAnimationPlayer" type="AnimationPlayer" parent="."]
-anims/0to1 = SubResource( 7 )
-anims/1to2 = SubResource( 2 )
-anims/1to3 = SubResource( 8 )
-anims/2to3 = SubResource( 4 )
-anims/2to4 = SubResource( 9 )
-anims/3to4 = SubResource( 5 )
-anims/RESET = SubResource( 3 )
-anims/repeat = SubResource( 6 )
+[node name="White8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2304, 576 )
 
-[node name="Brush" type="Sprite" parent="."]
-position = Vector2( 1200, 320 )
-scale = Vector2( 0.191045, 0.216216 )
-texture = ExtResource( 5 )
+[node name="White9" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2432, 576 )
 
-[node name="C2" type="AudioStreamPlayer2D" parent="Brush"]
-position = Vector2( -837.5, -1406 )
-scale = Vector2( 5.23438, 4.625 )
-stream = ExtResource( 10 )
+[node name="None2" parent="." instance=ExtResource( 17 )]
+position = Vector2( 2560, 576 )
 
-[node name="D2" type="AudioStreamPlayer2D" parent="Brush"]
-position = Vector2( -837.5, -1406 )
-scale = Vector2( 5.23438, 4.625 )
-stream = ExtResource( 12 )
-
-[node name="E2" type="AudioStreamPlayer2D" parent="Brush"]
-position = Vector2( -837.5, -1406 )
-scale = Vector2( 5.23438, 4.625 )
-stream = ExtResource( 11 )
-
-[node name="F2" type="AudioStreamPlayer2D" parent="Brush"]
-position = Vector2( -837.5, -1406 )
-scale = Vector2( 5.23438, 4.625 )
-stream = ExtResource( 13 )
-
-[node name="Error" type="AudioStreamPlayer2D" parent="Brush"]
-position = Vector2( -837.5, -1406 )
-scale = Vector2( 5.23438, 4.625 )
-stream = ExtResource( 16 )
-
-[node name="PaintButton" type="TextureButton" parent="."]
-visible = false
-margin_left = 864.0
-margin_top = 416.0
-margin_right = 992.0
-margin_bottom = 544.0
-texture_normal = ExtResource( 4 )
-
-[node name="LeadTimer" type="Timer" parent="."]
-autostart = true
-
-[node name="FollowTimer" type="Timer" parent="."]
-
-[connection signal="pressed" from="PaintButton" to="." method="_on_paint_button_pressed"]
-[connection signal="timeout" from="LeadTimer" to="." method="_on_lead_timer_timeout"]
-[connection signal="timeout" from="FollowTimer" to="." method="_on_follow_timer_timeout"]
+[node name="White10" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2688, 576 )

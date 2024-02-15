@@ -1,3 +1,3 @@
 [gd_scene format=2]
 
-[node name="None" type="Node2D"]
+[node name="None" type="Node2D" groups=["mushrooms"]]

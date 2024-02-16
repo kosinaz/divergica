@@ -38,3 +38,5 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 1 )
 text = "1"
 align = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/level.gd" type="Script" id=4]
 [ext_resource path="res://scenes/mushroom_none.tscn" type="PackedScene" id=17]
 
-[node name="Level" type="Node2D"]
+[node name="Level1" type="Node2D"]
 script = ExtResource( 4 )
 
 [node name="Bg" type="Sprite" parent="."]

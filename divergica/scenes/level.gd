@@ -4,6 +4,10 @@ var current_mushroom = 0
 var turn = 0
 var notes = []
 var rng = RandomNumberGenerator.new()
+var config = ConfigFile.new()
+var painted = 0
+var available = 0
+var gold = 0
 
 onready var mushrooms = get_tree().get_nodes_in_group("mushrooms")
 
@@ -22,6 +26,7 @@ func _ready():
 	$"LevelEngine/PaintButton".connect("pressed", self, "_on_paint_button_pressed")
 # warning-ignore:return_value_discarded
 	$"LevelEngine/ContinueButton".connect("pressed", self, "_on_continue_button_pressed")
+	$"LevelEngine/GoldTotal/GoldContainer/Label".text = str(0)
 
 func _start_turn():
 	$"LevelEngine/FollowTimer".start()
@@ -42,21 +47,32 @@ func _on_paint_button_pressed():
 		$"LevelEngine/BrushSounds".get_node("Error").play()
 		return
 	var mushroom = mushrooms[current_mushroom + turn * 4]
-	if not mushroom is AnimatedSprite:
+	if not mushroom is AnimatedSprite or mushroom.animation == "black":
 		$"LevelEngine/BrushSounds".get_node("Error").play()
 		return
+	if mushroom.animation == "painted" or mushroom.animation == "twice":
+		return
+	var current_gold = int(stepify(pow($"LevelEngine/FollowTimer".time_left * 10, 3), 10))
+	if mushroom.animation == "once":
+		current_gold *= 2
+	gold += current_gold
+	$"LevelEngine/GoldTotal/GoldContainer/Label".text = str(gold)
+	$"LevelEngine/Gold".position.x = current_mushroom * 128 + 320
+	$"LevelEngine/Gold/GoldContainer/Label".text = str(current_gold)
+	$"LevelEngine/Gold/AnimationPlayer".stop()
+	$"LevelEngine/Gold/AnimationPlayer".play("show")
 	match mushroom.animation:
-		"black":
-			$"LevelEngine/BrushSounds".get_node("Error").play()
 		"striped":
 			$"LevelEngine/BrushSounds".get_child(notes[current_mushroom + turn * 4]).play()
 			mushroom.play("once")
 		"once":
 			$"LevelEngine/BrushSounds".get_child(notes[current_mushroom + turn * 4]).play()
 			mushroom.play("twice")
+			painted += 1
 		"white":
 			$"LevelEngine/BrushSounds".get_child(notes[current_mushroom + turn * 4]).play()
 			mushroom.play("painted")
+			painted += 1
 
 func _on_lead_timer_timeout():
 	if current_mushroom > 3:
@@ -66,6 +82,7 @@ func _on_lead_timer_timeout():
 	var mushroom = mushrooms[current_mushroom + turn * 4]
 	if not mushroom.name.begins_with("None"):
 		$"LevelEngine/MushroomSounds".get_child(notes[current_mushroom + turn * 4]).play()
+		available += 1
 		mushroom.get_child(0).play("mushroom_animation")
 	current_mushroom += 1
 
@@ -78,3 +95,16 @@ func _on_follow_timer_timeout():
 		$"LevelEngine/PaintButton".hide()
 		if turn < 2:
 			$"LevelEngine/ContinueButton".show()
+		else:
+			_save_results()
+# warning-ignore:return_value_discarded
+			get_tree().change_scene("res://scenes/win.tscn")
+
+func _save_results():
+	config.set_value("global", "level", name)
+	config.set_value(name, "painted", painted)
+	config.set_value(name, "available", available)
+	config.set_value(name, "gold", gold)
+	var result = config.save("user://config.cfg")
+	if not result == OK:
+		print("coulnd't save config")

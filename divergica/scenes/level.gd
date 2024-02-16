@@ -8,7 +8,7 @@ var config = ConfigFile.new()
 var painted = 0
 var available = 0
 var gold = 0
-var award = 3
+var miss = 0
 var blocked_note = -1
 
 onready var mushrooms = get_tree().get_nodes_in_group("mushrooms")
@@ -90,6 +90,10 @@ func _on_lead_timer_timeout():
 	current_mushroom += 1
 
 func _on_follow_timer_timeout():
+	var mushroom = mushrooms[current_mushroom + turn * 4]
+	if ["white", "striped", "once"].has(mushroom.animation):
+		$"LevelEngine/BrushAnchor/BrushOffset/Brush/Error/AnimationPlayer".stop()
+		$"LevelEngine/BrushAnchor/BrushOffset/Brush/Error/AnimationPlayer".play("show")
 	current_mushroom += 1
 	if current_mushroom < 4:
 		$"LevelEngine/PaintButton".disabled = false
@@ -100,7 +104,7 @@ func _on_follow_timer_timeout():
 			$"LevelEngine/ContinueButton".show()
 		else:
 			_save_results()
-			if available > painted + 2:
+			if miss > 2:
 # warning-ignore:return_value_discarded
 				get_tree().change_scene("res://scenes/fail.tscn")
 			else:
@@ -115,7 +119,7 @@ func _save_results():
 	config.set_value(name, "painted", painted)
 	config.set_value(name, "available", available)
 	config.set_value(name, "gold", gold)
-	config.set_value(name, "award", award)
+	config.set_value(name, "award", 3 - max(miss, 0))
 	result = config.save("config.cfg")
 	if not result == OK:
 		print("coulnd't save config")

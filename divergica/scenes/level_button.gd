@@ -12,7 +12,17 @@ func _ready():
 		return
 	if level == "Level1":
 		disabled = false
-	var id = int(level.substr(5))
+		$"%Label".show()
+	else:
+		var id = int(level.substr(5))
+		var previous = int(config.get_value("Level" + str(id - 1), "award", 0))
+		if previous > 0:
+			disabled = false
+			$"%Label".show()
+			$"%Label".text = str(id)
+	var award = int(config.get_value(level, "award", 0))
+	if award > 0:
+		texture_normal = load("res://assets/level_button_done_" + str(award) + ".png")
 
 func _on_pressed():
 # warning-ignore:return_value_discarded

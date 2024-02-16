@@ -51,3 +51,27 @@ columns = 5
 [node name="LevelButton" parent="MarginContainer/LevelButtonContainer" instance=ExtResource( 4 )]
 margin_right = 128.0
 margin_bottom = 116.0
+
+[node name="LevelButton2" parent="MarginContainer/LevelButtonContainer" instance=ExtResource( 4 )]
+margin_left = 128.0
+margin_right = 256.0
+margin_bottom = 116.0
+level = "Level2"
+
+[node name="LevelButton3" parent="MarginContainer/LevelButtonContainer" instance=ExtResource( 4 )]
+margin_left = 256.0
+margin_right = 384.0
+margin_bottom = 116.0
+level = "Level3"
+
+[node name="LevelButton4" parent="MarginContainer/LevelButtonContainer" instance=ExtResource( 4 )]
+margin_left = 384.0
+margin_right = 512.0
+margin_bottom = 116.0
+level = "Level4"
+
+[node name="LevelButton5" parent="MarginContainer/LevelButtonContainer" instance=ExtResource( 4 )]
+margin_left = 512.0
+margin_right = 640.0
+margin_bottom = 116.0
+level = "Level5"

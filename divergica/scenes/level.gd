@@ -85,15 +85,18 @@ func _on_lead_timer_timeout():
 	var mushroom = mushrooms[current_mushroom + turn * 4]
 	if not mushroom.name.begins_with("None"):
 		$"LevelEngine/MushroomSounds".get_child(notes[current_mushroom + turn * 4]).play()
-		available += 1
+		if not mushroom.name.begins_with("Black"):
+			available += 1
 		mushroom.get_child(0).play("mushroom_animation")
 	current_mushroom += 1
 
 func _on_follow_timer_timeout():
-	var mushroom = mushrooms[current_mushroom + turn * 4]
-	if ["white", "striped", "once"].has(mushroom.animation):
-		$"LevelEngine/BrushAnchor/BrushOffset/Brush/Error/AnimationPlayer".stop()
-		$"LevelEngine/BrushAnchor/BrushOffset/Brush/Error/AnimationPlayer".play("show")
+	var id = current_mushroom + turn * 4
+	if id >= 0:
+		var mushroom = mushrooms[id]
+		if mushroom is AnimatedSprite and ["white", "striped", "once"].has(mushroom.animation):
+			mushroom.play("missed")
+			miss += 1
 	current_mushroom += 1
 	if current_mushroom < 4:
 		$"LevelEngine/PaintButton".disabled = false
@@ -112,7 +115,7 @@ func _on_follow_timer_timeout():
 				get_tree().change_scene("res://scenes/win.tscn")
 
 func _save_results():
-	var result = config.load("config.cfg")
+	var result = config.load("user://config.cfg")
 	if not result == OK:
 		print("couldn't load config")
 	config.set_value("global", "level", name)
@@ -120,6 +123,6 @@ func _save_results():
 	config.set_value(name, "available", available)
 	config.set_value(name, "gold", gold)
 	config.set_value(name, "award", 3 - max(miss, 0))
-	result = config.save("config.cfg")
+	result = config.save("user://config.cfg")
 	if not result == OK:
 		print("coulnd't save config")

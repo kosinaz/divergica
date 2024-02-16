@@ -3,7 +3,7 @@ extends Control
 var config = ConfigFile.new()
 
 func _ready():
-	var result = config.load("config.cfg")
+	var result = config.load("user://config.cfg")
 	if not result == OK:
 		print("couldn't load config")
 		return

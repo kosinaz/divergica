@@ -8,6 +8,7 @@ var config = ConfigFile.new()
 var painted = 0
 var available = 0
 var gold = 0
+var blocked_note = -1
 
 onready var mushrooms = get_tree().get_nodes_in_group("mushrooms")
 
@@ -43,12 +44,12 @@ func _on_continue_button_pressed():
 	current_mushroom = 0
 
 func _on_paint_button_pressed():
-	if $"LevelEngine/FollowTimer".time_left < 0.4 or current_mushroom == -1:
-		$"LevelEngine/BrushSounds".get_node("Error").play()
-		return
 	var mushroom = mushrooms[current_mushroom + turn * 4]
-	if not mushroom is AnimatedSprite or mushroom.animation == "black":
-		$"LevelEngine/BrushSounds".get_node("Error").play()
+	if $"LevelEngine/FollowTimer".time_left < 0.4 or current_mushroom == -1 or not mushroom is AnimatedSprite or mushroom.animation == "black" or blocked_note == current_mushroom + turn * 4:
+		$"LevelEngine/BrushAnchor/BrushOffset/Brush/Error/AnimationPlayer".stop()
+		$"LevelEngine/BrushAnchor/BrushOffset/Brush/Error/AnimationPlayer".play("show")
+		if $"LevelEngine/FollowTimer".time_left < 0.4:
+			blocked_note = current_mushroom + turn * 4 + 1
 		return
 	if mushroom.animation == "painted" or mushroom.animation == "twice":
 		return
@@ -57,7 +58,8 @@ func _on_paint_button_pressed():
 		current_gold *= 2
 	gold += current_gold
 	$"LevelEngine/GoldTotal/GoldContainer/Label".text = str(gold)
-	$"LevelEngine/Gold".position.x = current_mushroom * 128 + 320
+	var position_x = current_mushroom * 128 + 320
+	$"LevelEngine/Gold".position.x = position_x
 	$"LevelEngine/Gold/GoldContainer/Label".text = str(current_gold)
 	$"LevelEngine/Gold/AnimationPlayer".stop()
 	$"LevelEngine/Gold/AnimationPlayer".play("show")
@@ -87,6 +89,7 @@ func _on_lead_timer_timeout():
 	current_mushroom += 1
 
 func _on_follow_timer_timeout():
+#	$"LevelEngine/BrushSounds".get_child(notes[current_mushroom + turn * 4]).play()
 	current_mushroom += 1
 	if current_mushroom < 4:
 		$"LevelEngine/PaintButton".disabled = false
@@ -101,10 +104,13 @@ func _on_follow_timer_timeout():
 			get_tree().change_scene("res://scenes/win.tscn")
 
 func _save_results():
+	var result = config.load("config.cfg")
+	if not result == OK:
+		print("couldn't load config")
 	config.set_value("global", "level", name)
 	config.set_value(name, "painted", painted)
 	config.set_value(name, "available", available)
 	config.set_value(name, "gold", gold)
-	var result = config.save("user://config.cfg")
+	result = config.save("config.cfg")
 	if not result == OK:
 		print("coulnd't save config")

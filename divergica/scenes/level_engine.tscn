@@ -13,7 +13,7 @@
 [ext_resource path="res://assets/e2.mp3" type="AudioStream" id=11]
 [ext_resource path="res://assets/d2.mp3" type="AudioStream" id=12]
 [ext_resource path="res://assets/f2.mp3" type="AudioStream" id=13]
-[ext_resource path="res://assets/error.mp3" type="AudioStream" id=16]
+[ext_resource path="res://scenes/error.tscn" type="PackedScene" id=14]
 
 [sub_resource type="InputEventAction" id=11]
 action = "ok"
@@ -222,11 +222,6 @@ position = Vector2( 640, 576 )
 scale = Vector2( 0.523438, 0.4625 )
 stream = ExtResource( 13 )
 
-[node name="Error" type="AudioStreamPlayer2D" parent="BrushSounds"]
-position = Vector2( 512, 576 )
-scale = Vector2( 0.523438, 0.4625 )
-stream = ExtResource( 16 )
-
 [node name="PaintButton" type="TextureButton" parent="."]
 margin_left = 864.0
 margin_top = 416.0
@@ -262,6 +257,10 @@ position = Vector2( 896, 0 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 5 )
 offset = Vector2( 512, -376 )
+
+[node name="Error" parent="BrushAnchor/BrushOffset/Brush" instance=ExtResource( 14 )]
+position = Vector2( 140, 120 )
+scale = Vector2( 10, 10 )
 
 [node name="LeadTimer" type="Timer" parent="."]
 autostart = true

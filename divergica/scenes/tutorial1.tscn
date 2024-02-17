@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/tutorial_bg.png" type="Texture" id=1]
+[ext_resource path="res://assets/tutorial1.webm" type="VideoStream" id=2]
+[ext_resource path="res://assets/play_button.png" type="Texture" id=3]
+[ext_resource path="res://scenes/tutorial_continue_button.gd" type="Script" id=4]
+
+[node name="Tutorial1" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 576.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 342.0
+margin_top = 134.0
+margin_right = 690.0
+margin_bottom = 338.0
+color = Color( 0, 0, 0, 0.780392 )
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+margin_left = 344.0
+margin_top = 136.0
+margin_right = 688.0
+margin_bottom = 336.0
+stream = ExtResource( 2 )
+autoplay = true
+
+[node name="ContinueButton" type="TextureButton" parent="."]
+margin_left = 456.0
+margin_top = 344.0
+margin_right = 584.0
+margin_bottom = 472.0
+texture_normal = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[connection signal="pressed" from="ContinueButton" to="ContinueButton" method="_on_pressed"]

@@ -27,4 +27,7 @@ func _ready():
 
 func _on_pressed():
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://scenes/" + level.to_lower() + ".tscn")
+	if int(config.get_value("Level1", "painted", 0)) == 0:
+		get_tree().change_scene("res://scenes/Tutorial1.tscn")
+	else:
+		get_tree().change_scene("res://scenes/" + level.to_lower() + ".tscn")

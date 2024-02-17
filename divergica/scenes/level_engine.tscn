@@ -284,3 +284,6 @@ position = Vector2( -128, 478 )
 
 [node name="GoldTotal" parent="." instance=ExtResource( 3 )]
 position = Vector2( 883, 46 )
+
+[node name="Penalty" parent="." instance=ExtResource( 15 )]
+position = Vector2( -208, 478 )

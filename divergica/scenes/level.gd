@@ -100,6 +100,12 @@ func _on_follow_timer_timeout():
 		if mushroom is AnimatedSprite and ["white", "striped", "once"].has(mushroom.animation):
 			mushroom.play("missed")
 			miss += 1
+			var position_x = current_mushroom * 128 + 320
+			$"LevelEngine/Penalty".position.x = position_x
+			$"LevelEngine/Penalty/AnimationPlayer".stop()
+			$"LevelEngine/Penalty/AnimationPlayer".play("show")
+			gold -= 250
+			$"LevelEngine/GoldTotal/GoldContainer/Label".text = str(gold)
 	current_mushroom += 1
 	if current_mushroom < 4:
 		$"LevelEngine/PaintButton".disabled = false

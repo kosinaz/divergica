@@ -76,6 +76,7 @@ columns = 5
 [node name="LevelButton" parent="MarginContainer/VBoxContainer/LevelButtonContainer" instance=ExtResource( 4 )]
 margin_right = 128.0
 margin_bottom = 116.0
+disabled = false
 
 [node name="LevelButton2" parent="MarginContainer/VBoxContainer/LevelButtonContainer" instance=ExtResource( 4 )]
 margin_left = 128.0

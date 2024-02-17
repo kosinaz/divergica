@@ -29,6 +29,8 @@ func _ready():
 # warning-ignore:return_value_discarded
 	$"LevelEngine/FollowTimer".connect("timeout", self, "_on_follow_timer_timeout")
 # warning-ignore:return_value_discarded
+	$"LevelEngine/TutorialTimer".connect("timeout", self, "_on_tutorial_timer_timeout")
+# warning-ignore:return_value_discarded
 	$"LevelEngine/PaintButton".connect("pressed", self, "_on_paint_button_pressed")
 # warning-ignore:return_value_discarded
 	$"LevelEngine/ContinueButton".connect("pressed", self, "_on_continue_button_pressed")
@@ -50,6 +52,9 @@ func _on_continue_button_pressed():
 	current_mushroom = 0
 
 func _on_paint_button_pressed():
+	if $"LevelEngine/FollowTimer".paused:
+		$"LevelEngine/FollowTimer".paused = false
+		$"LevelEngine/BrushAnimationPlayer".play()
 	var mushroom = mushrooms[current_mushroom + turn * 4]
 	if $"LevelEngine/FollowTimer".time_left < 0.4 or current_mushroom == -1 or not mushroom is AnimatedSprite or mushroom.animation == "black" or blocked_note == current_mushroom + turn * 4:
 		$"LevelEngine/BrushAnchor/BrushOffset/Brush/Error/AnimationPlayer".stop()
@@ -97,7 +102,13 @@ func _on_lead_timer_timeout():
 		mushroom.get_child(0).play("mushroom_animation")
 	current_mushroom += 1
 
+func _on_tutorial_timer_timeout():
+	$"LevelEngine/FollowTimer".paused = true
+	$"LevelEngine/BrushAnimationPlayer".stop(false)
+
 func _on_follow_timer_timeout():
+	if name == "Level1" and current_mushroom == -1:
+		$"LevelEngine/TutorialTimer".start()
 	var id = current_mushroom + turn * 4
 	if id >= 0:
 		var mushroom = mushrooms[id]

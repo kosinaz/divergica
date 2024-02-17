@@ -35,18 +35,20 @@ autoplay = true
 expand = false
 
 [node name="RestartButton" type="TextureButton" parent="."]
-margin_left = 376.0
-margin_top = 416.0
-margin_right = 504.0
-margin_bottom = 544.0
+margin_left = 384.0
+margin_top = 406.0
+margin_right = 512.0
+margin_bottom = 534.0
+rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 6 )
 script = ExtResource( 5 )
 
 [node name="ContinueButton" type="TextureButton" parent="."]
-margin_left = 528.0
-margin_top = 416.0
-margin_right = 656.0
-margin_bottom = 544.0
+margin_left = 576.0
+margin_top = 406.0
+margin_right = 704.0
+margin_bottom = 534.0
+rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 3 )
 script = ExtResource( 4 )
 level = "Level2"

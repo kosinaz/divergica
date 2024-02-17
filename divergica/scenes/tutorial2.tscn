@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/tutorial_bg.png" type="Texture" id=1]
-[ext_resource path="res://assets/tutorial1.webm" type="VideoStream" id=2]
+[ext_resource path="res://assets/tutorial2.webm" type="VideoStream" id=2]
 [ext_resource path="res://assets/play_button.png" type="Texture" id=3]
 [ext_resource path="res://scenes/tutorial_continue_button.gd" type="Script" id=4]
 [ext_resource path="res://scenes/tutorial_restart_button.gd" type="Script" id=5]
 [ext_resource path="res://assets/restart_button.png" type="Texture" id=6]
 
-[node name="Tutorial1" type="Control"]
+[node name="Tutorial2" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -47,6 +47,7 @@ margin_right = 656.0
 margin_bottom = 472.0
 texture_normal = ExtResource( 3 )
 script = ExtResource( 4 )
+level = "Level2"
 
 [connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_pressed"]
 [connection signal="pressed" from="ContinueButton" to="ContinueButton" method="_on_pressed"]

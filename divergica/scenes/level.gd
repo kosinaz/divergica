@@ -52,6 +52,7 @@ func _on_continue_button_pressed():
 	current_mushroom = 0
 
 func _on_paint_button_pressed():
+	$"LevelEngine/RippleAnimationPlayer".stop()
 	$"LevelEngine/RippleAnimationPlayer".play("show")
 	if $"LevelEngine/FollowTimer".paused:
 		$"LevelEngine/FollowTimer".paused = false

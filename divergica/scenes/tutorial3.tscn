@@ -18,33 +18,35 @@ texture = ExtResource( 1 )
 expand = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 342.0
-margin_top = 134.0
-margin_right = 690.0
-margin_bottom = 338.0
+margin_left = 269.0
+margin_top = 125.0
+margin_right = 755.0
+margin_bottom = 402.0
 color = Color( 0, 0, 0, 0.780392 )
 
 [node name="VideoPlayer" type="VideoPlayer" parent="."]
-margin_left = 344.0
-margin_top = 136.0
-margin_right = 688.0
-margin_bottom = 336.0
+margin_left = 272.0
+margin_top = 128.0
+margin_right = 2192.0
+margin_bottom = 1208.0
+rect_scale = Vector2( 0.25, 0.25 )
 stream = ExtResource( 2 )
 autoplay = true
+expand = false
 
 [node name="RestartButton" type="TextureButton" parent="."]
 margin_left = 376.0
-margin_top = 344.0
+margin_top = 416.0
 margin_right = 504.0
-margin_bottom = 472.0
+margin_bottom = 544.0
 texture_normal = ExtResource( 6 )
 script = ExtResource( 5 )
 
 [node name="ContinueButton" type="TextureButton" parent="."]
 margin_left = 528.0
-margin_top = 344.0
+margin_top = 416.0
 margin_right = 656.0
-margin_bottom = 472.0
+margin_bottom = 544.0
 texture_normal = ExtResource( 3 )
 script = ExtResource( 4 )
 level = "Level3"

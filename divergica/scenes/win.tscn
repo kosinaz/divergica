@@ -10,15 +10,11 @@
 [ext_resource path="res://scenes/restart_button.gd" type="Script" id=8]
 [ext_resource path="res://scenes/continue_button.gd" type="Script" id=9]
 [ext_resource path="res://assets/mushroom_painted.png" type="Texture" id=10]
-[ext_resource path="res://assets/gold.png" type="Texture" id=11]
+[ext_resource path="res://assets/gold_coin.png" type="Texture" id=11]
 [ext_resource path="res://scenes/win.gd" type="Script" id=12]
 [ext_resource path="res://assets/level_done_3.png" type="Texture" id=13]
 [ext_resource path="res://assets/level_done_2.png" type="Texture" id=14]
-
-[sub_resource type="DynamicFont" id=1]
-size = 56
-outline_color = Color( 0.745098, 0.156863, 0.215686, 1 )
-font_data = ExtResource( 2 )
+[ext_resource path="res://resources/title_font.tres" type="DynamicFont" id=15]
 
 [sub_resource type="AnimatedTexture" id=3]
 flags = 4
@@ -64,7 +60,7 @@ margin_right = 324.0
 margin_bottom = 57.0
 custom_colors/font_color = Color( 0.745098, 0.156863, 0.215686, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 15 )
 text = "Level Complete!"
 align = 1
 

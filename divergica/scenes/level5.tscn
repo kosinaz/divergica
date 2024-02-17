@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/mushroom_striped.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/level_bg.png" type="Texture" id=2]
+[ext_resource path="res://scenes/mushroom.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/level.gd" type="Script" id=4]
+[ext_resource path="res://scenes/level_engine.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/mushroom_black.tscn" type="PackedScene" id=6]
+
+[node name="Level5" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Bg" type="Sprite" parent="."]
+position = Vector2( 512, 288 )
+scale = Vector2( 0.533333, 0.533333 )
+texture = ExtResource( 2 )
+
+[node name="Bg2" type="Sprite" parent="."]
+position = Vector2( 1536, 288 )
+scale = Vector2( 0.533333, 0.533333 )
+texture = ExtResource( 2 )
+
+[node name="Bg3" type="Sprite" parent="."]
+position = Vector2( 2560, 288 )
+scale = Vector2( 0.533333, 0.533333 )
+texture = ExtResource( 2 )
+
+[node name="Striped" parent="." instance=ExtResource( 1 )]
+position = Vector2( 256, 576 )
+
+[node name="Black3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 384, 576 )
+
+[node name="White2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 512, 576 )
+
+[node name="White3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 640, 576 )
+
+[node name="Black" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1280, 576 )
+
+[node name="Striped2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1408, 576 )
+
+[node name="Striped6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1536, 576 )
+
+[node name="White7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1664, 576 )
+
+[node name="Striped3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2304, 576 )
+
+[node name="Striped4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2432, 576 )
+
+[node name="Striped5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2560, 576 )
+
+[node name="Black2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 2688, 576 )
+
+[node name="LevelEngine" parent="." instance=ExtResource( 5 )]

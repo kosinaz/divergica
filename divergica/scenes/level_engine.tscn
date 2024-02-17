@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/paint_button_disabled.png" type="Texture" id=1]
 [ext_resource path="res://assets/play_button.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/d2.mp3" type="AudioStream" id=12]
 [ext_resource path="res://assets/f2.mp3" type="AudioStream" id=13]
 [ext_resource path="res://scenes/error.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/penalty.tscn" type="PackedScene" id=15]
 
 [sub_resource type="InputEventAction" id=11]
 action = "ok"
@@ -260,6 +261,9 @@ offset = Vector2( 512, -376 )
 
 [node name="Error" parent="BrushAnchor/BrushOffset/Brush" instance=ExtResource( 14 )]
 position = Vector2( 140, 120 )
+scale = Vector2( 10, 10 )
+
+[node name="Penalty" parent="BrushAnchor/BrushOffset/Brush" instance=ExtResource( 15 )]
 scale = Vector2( 10, 10 )
 
 [node name="LeadTimer" type="Timer" parent="."]

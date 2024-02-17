@@ -14,7 +14,6 @@ var blocked_note = -1
 onready var mushrooms = get_tree().get_nodes_in_group("mushrooms")
 
 func _ready():
-	add_child(load("res://scenes/level_engine.tscn").instance())
 	rng.randomize()
 	for _i in range(12):
 		notes.append(rng.randi_range(0, 3))
@@ -49,6 +48,10 @@ func _on_paint_button_pressed():
 	if $"LevelEngine/FollowTimer".time_left < 0.4 or current_mushroom == -1 or not mushroom is AnimatedSprite or mushroom.animation == "black" or blocked_note == current_mushroom + turn * 4:
 		$"LevelEngine/BrushAnchor/BrushOffset/Brush/Error/AnimationPlayer".stop()
 		$"LevelEngine/BrushAnchor/BrushOffset/Brush/Error/AnimationPlayer".play("show")
+		$"LevelEngine/BrushAnchor/BrushOffset/Brush/Penalty/AnimationPlayer".stop()
+		$"LevelEngine/BrushAnchor/BrushOffset/Brush/Penalty/AnimationPlayer".play("show")
+		gold -= 250
+		$"LevelEngine/GoldTotal/GoldContainer/Label".text = str(gold)
 		if $"LevelEngine/FollowTimer".time_left < 0.4:
 			blocked_note = current_mushroom + turn * 4 + 1
 		return

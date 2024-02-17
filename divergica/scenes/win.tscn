@@ -22,13 +22,15 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="AnimatedTexture" id=3]
 flags = 4
-frames = 3
+frames = 4
 pause = true
 frame_0/texture = ExtResource( 3 )
-frame_1/texture = ExtResource( 14 )
+frame_1/texture = ExtResource( 3 )
 frame_1/delay_sec = 0.0
-frame_2/texture = ExtResource( 13 )
+frame_2/texture = ExtResource( 14 )
 frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 13 )
+frame_3/delay_sec = 0.0
 
 [sub_resource type="DynamicFont" id=2]
 size = 44

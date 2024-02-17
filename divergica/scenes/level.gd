@@ -19,6 +19,11 @@ func _ready():
 		notes.append(rng.randi_range(0, 3))
 	for mushroom in mushrooms:
 		mushroom.hide()
+		if not mushroom.name.begins_with("None") and not mushroom.name.begins_with("Black"):
+			available += 1
+	$"LevelEngine/Miss1".hide()
+	$"LevelEngine/Miss2".hide()
+	$"LevelEngine/Miss3".hide()
 # warning-ignore:return_value_discarded
 	$"LevelEngine/LeadTimer".connect("timeout", self, "_on_lead_timer_timeout")
 # warning-ignore:return_value_discarded
@@ -28,6 +33,7 @@ func _ready():
 # warning-ignore:return_value_discarded
 	$"LevelEngine/ContinueButton".connect("pressed", self, "_on_continue_button_pressed")
 	$"LevelEngine/GoldTotal/GoldContainer/Label".text = str(0)
+	$"LevelEngine/LevelNameLabel".text = name
 
 func _start_turn():
 	$"LevelEngine/FollowTimer".start()
@@ -88,8 +94,6 @@ func _on_lead_timer_timeout():
 	var mushroom = mushrooms[current_mushroom + turn * 4]
 	if not mushroom.name.begins_with("None"):
 		$"LevelEngine/MushroomSounds".get_child(notes[current_mushroom + turn * 4]).play()
-		if not mushroom.name.begins_with("Black"):
-			available += 1
 		mushroom.get_child(0).play("mushroom_animation")
 	current_mushroom += 1
 
@@ -100,6 +104,12 @@ func _on_follow_timer_timeout():
 		if mushroom is AnimatedSprite and ["white", "striped", "once"].has(mushroom.animation):
 			mushroom.play("missed")
 			miss += 1
+			if miss > 3:
+				_save_results()
+# warning-ignore:return_value_discarded
+				get_tree().change_scene("res://scenes/fail.tscn")
+				return
+			$"LevelEngine".get_node("Miss" + str(miss)).show()
 			var position_x = current_mushroom * 128 + 320
 			$"LevelEngine/Penalty".position.x = position_x
 			$"LevelEngine/Penalty/AnimationPlayer".stop()
@@ -116,7 +126,7 @@ func _on_follow_timer_timeout():
 			$"LevelEngine/ContinueButton".show()
 		else:
 			_save_results()
-			if miss > 2:
+			if miss > 3:
 # warning-ignore:return_value_discarded
 				get_tree().change_scene("res://scenes/fail.tscn")
 			else:
@@ -131,7 +141,10 @@ func _save_results():
 	config.set_value(name, "painted", painted)
 	config.set_value(name, "available", available)
 	config.set_value(name, "gold", gold)
-	config.set_value(name, "award", 3 - max(miss, 0))
+	var current_award = 4 - max(miss, 0)
+	var award = config.get_value(name, "award", 0)
+	if award < current_award:
+		config.set_value(name, "award", current_award)
 	result = config.save("user://config.cfg")
 	if not result == OK:
 		print("coulnd't save config")

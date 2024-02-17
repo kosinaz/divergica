@@ -11,4 +11,4 @@ func _ready():
 	var painted = int(config.get_value(level, "painted"))
 	var available = int(config.get_value(level, "available"))
 	$"%MushroomsLabel".text = str(painted) + "/" + str(available)
-	$"%TipLabel".text = "Paint " + str(available - 2 - painted) + " more to win!"
+	$"%TipLabel".text = "Paint " + str(available - 3 - painted) + " more to win!"

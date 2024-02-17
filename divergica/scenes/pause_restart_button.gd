@@ -1,6 +1,8 @@
 extends TextureButton
 
+var config = ConfigFile.new()
+
 func _on_pressed():
 	get_tree().paused = false
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://scenes/levels.tscn")
+	get_tree().reload_current_scene()

@@ -19,7 +19,7 @@ func _ready():
 		notes.append(rng.randi_range(0, 3))
 	for mushroom in mushrooms:
 		mushroom.hide()
-		if not mushroom.name.begins_with("None") and not mushroom.name.begins_with("Black"):
+		if not mushroom.name.begins_with("None") and not mushroom.animation == "black":
 			available += 1
 	$"LevelEngine/Miss1".hide()
 	$"LevelEngine/Miss2".hide()
@@ -109,6 +109,7 @@ func _on_follow_timer_timeout():
 # warning-ignore:return_value_discarded
 				get_tree().change_scene("res://scenes/fail.tscn")
 				return
+			$"LevelEngine/MissAudioStreamPlayer".play()
 			$"LevelEngine".get_node("Miss" + str(miss)).show()
 			var position_x = current_mushroom * 128 + 320
 			$"LevelEngine/Penalty".position.x = position_x

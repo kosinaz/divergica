@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/paint_button_disabled.png" type="Texture" id=1]
 [ext_resource path="res://assets/play_button.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scenes/error.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/penalty.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/candy_paint.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://assets/error.mp3" type="AudioStream" id=17]
 [ext_resource path="res://assets/mushroom_missed.png" type="Texture" id=18]
 
 [sub_resource type="InputEventAction" id=11]
@@ -318,3 +319,6 @@ texture = ExtResource( 18 )
 position = Vector2( 136, 88 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 18 )
+
+[node name="MissAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )

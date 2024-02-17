@@ -165,6 +165,7 @@ stretch_mode = 5
 script = ExtResource( 8 )
 
 [node name="ContinueButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 margin_left = 218.0
 margin_right = 324.0
 margin_bottom = 86.0

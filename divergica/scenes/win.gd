@@ -8,6 +8,8 @@ func _ready():
 		print("couldn't load config")
 		return
 	var level = config.get_value("global", "level")
+	if level == "Level5":
+		$"%ContinueButton".hide()
 	var painted = int(config.get_value(level, "painted"))
 	var painted_max = int(config.get_value(level, "painted_max", 0))
 	var available = int(config.get_value(level, "available"))

@@ -22,6 +22,7 @@ func _ready():
 			$"%Label".text = str(id)
 	var award = int(config.get_value(level, "award", 0))
 	if award > 0:
+		award = max(1, award - 1)
 		texture_normal = load("res://assets/level_button_done_" + str(award) + ".png")
 
 func _on_pressed():

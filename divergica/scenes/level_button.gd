@@ -27,12 +27,12 @@ func _ready():
 
 func _on_pressed():
 # warning-ignore:return_value_discarded
-	if int(config.get_value("Level1", "painted", 0)) == 0:
+	if level == "Level1" and int(config.get_value("Level1", "painted", 0)) == 0:
 		get_tree().change_scene("res://scenes/tutorial1.tscn")
-	elif int(config.get_value("Level2", "painted", 0)) == 0:
+	elif level == "Level2" and int(config.get_value("Level2", "painted", 0)) == 0:
 # warning-ignore:return_value_discarded
 		get_tree().change_scene("res://scenes/tutorial2.tscn")
-	elif int(config.get_value("Level3", "painted", 0)) == 0:
+	elif level == "Level3" and int(config.get_value("Level3", "painted", 0)) == 0:
 # warning-ignore:return_value_discarded
 		get_tree().change_scene("res://scenes/tutorial3.tscn")
 	else:
